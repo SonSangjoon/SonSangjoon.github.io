@@ -31,7 +31,7 @@ export type PostType = {
 
 const PostListWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr₩₩₩ㅋ;
+    grid-template-columns: 1fr;
     grid-gap: 20px;
     width: 768px;
     margin: 0 auto;

@@ -5,6 +5,7 @@ import Footer from 'components/Common/Footer'
 import CategoryList from 'components/Main/CategoryList'
 import Introduction from 'components/Main/Introduction'
 import PostList from 'components/Main/PostList'
+import Template from 'components/Common/Template'
 
 import { PostListItemType } from 'types/PostItem.types'
 import { graphql } from 'gatsby'
@@ -73,16 +74,14 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     [],
   )
   return (
-    <Container>
-      <GlobalStyle />
+    <Template>
       <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
       />
       <PostList selectedCategory={selectedCategory} posts={edges} />
-      <Footer />
-    </Container>
+    </Template>
   )
 }
 
