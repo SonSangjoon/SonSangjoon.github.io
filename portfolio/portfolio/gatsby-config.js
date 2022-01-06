@@ -16,6 +16,14 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://SonSangjoon.github.io/',
+        stripQueryString: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -28,6 +36,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/static`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: '<https://my-website.com/>',
+        stripQueryString: true,
       },
     },
     {
