@@ -3,7 +3,7 @@ module.exports = {
     title: `주니어 프론트엔드 개발자의 개발 블로그`,
     description: `주니어 프론트엔드 개발자의 프로젝트 기록과 공부한 개발 지식을 정리한 블로그입니다`,
     author: `Sangjoon`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://SonSangjoon.github.io`,
   },
   plugins: [
     {
@@ -20,7 +20,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: '<https://my-website.com/>',
+        siteUrl: 'SonSangjoon.github.io',
         stripQueryString: true,
       },
     },
