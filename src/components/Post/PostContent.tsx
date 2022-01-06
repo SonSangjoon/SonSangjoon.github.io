@@ -26,15 +26,17 @@ const MarkdownRenderer = styled.div`
   // Adjust Heading Element Style
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-weight: 800;
     margin-bottom: 30px;
+    line-height: 1.5;
   }
 
   * + h1,
   * + h2,
   * + h3 {
-    margin-top: 80px;
+    margin-top: 20px;
   }
 
   hr + h1,
@@ -57,7 +59,7 @@ const MarkdownRenderer = styled.div`
 
   // Adjust Quotation Element Style
   blockquote {
-    margin: 30px 0;
+    margin: 20px 0;
     padding: 5px 15px;
     border-left: 2px solid #000000;
     font-weight: 800;
@@ -66,14 +68,14 @@ const MarkdownRenderer = styled.div`
   // Adjust List Element Style
   ol,
   ul {
-    margin-left: 20px;
-    padding: 30px 0;
+    margin-left: 40px;
+    padding: 10px 0;
   }
 
   // Adjust Horizontal Rule style
   hr {
     border: 1px solid #000000;
-    margin: 100px 0;
+    margin: 20px 0;
   }
 
   // Adjust Link Element Style
