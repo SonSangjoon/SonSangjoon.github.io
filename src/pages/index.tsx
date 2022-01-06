@@ -1,8 +1,7 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import styled from '@emotion/styled'
-import CategoryList from 'components/Main/CategoryList'
+import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
 import Introduction from 'components/Main/Introduction'
-import PostList from 'components/Main/PostList'
+import PostList, { PostType } from 'components/Main/PostList'
 import Template from 'components/Common/Template'
 
 import { PostListItemType } from 'types/PostItem.types'
@@ -35,11 +34,7 @@ type IndexPageProps = {
   }
 }
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  `
+
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
   data: {

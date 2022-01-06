@@ -7,6 +7,7 @@ type IntroductionProps = {
   profileImage: IGatsbyImageData
 }
 
+
 const Background = styled.div`
   width: 100%;
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
