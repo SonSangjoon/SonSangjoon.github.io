@@ -6,48 +6,67 @@ import { PostFrontmatterType } from 'types/PostItem.types'
 
 type PostItemProps = PostFrontmatterType & { link: string }
 
-const PostItemWrapper = styled(Link)`
+const PostItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
   border-radius: 10px;
-  cursor: pointer;
   padding: 2px;
+  flex-wrap: wrap;
+`
+
+const Overlay = styled.div`
 
 `
 
 const ThumbnailImage = styled(GatsbyImage)`
-  width: 220px;
-  height: 100%;
+  width: 170px;
+  height: 170px;
   border-radius: 10px 10px 10px 10px;
+  margin-right : 20px;
+  object-fit: cover;
+  object-position: center center;
 `
 
 const PostItemContent = styled.div`
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  padding: 15px 30px;
-  &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-height: 300px
+  width : 50
+  padding: 30px 30px;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  a {
+    transition: all 150ms ease-out;
+
+    :hover {
+      color: #FF965B;
+    }
   }
 `
 
 const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;
-  margin-bottom: 3px;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   font-size: 20px;
   font-weight: 700;
 `
-
 const Date = styled.div`
   font-size: 14px;
   font-weight: 400;
   opacity: 0.7;
+`
+const PostLink = styled(Link)`
+  display: contents;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.7;
+  cursor: pointer;
 `
 
 const Category = styled.div`
@@ -68,7 +87,7 @@ const CategoryItem = styled.div`
 const Summary = styled.div`
   display: -webkit-box;
   overflow: hidden;
-  margin-top: auto;
+  margin-bottom: auto;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
@@ -89,9 +108,9 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   link,
 }) {
   return (
-    <PostItemWrapper to={link}>
+    <PostItemWrapper >
       <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
-
+      <Overlay />
       <PostItemContent>
         <Category>
           {categories.map(item => (
@@ -102,10 +121,8 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
           <Title>{title}</Title>
           <Date>{date}</Date>
           <Summary>{summary}</Summary>
-          <Date>Read More</Date>
+          <PostLink to={link}>Read More </PostLink>
         </>
-
-
       </PostItemContent>
     </PostItemWrapper>
   )

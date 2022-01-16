@@ -61,6 +61,7 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
 }) {
     return (
         <CategoryListWrapper>
+
             {Object.entries(categoryList).map(([name, count]) => (
                 <CategoryItem
                     to={`/?category=${name}`}

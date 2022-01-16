@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactNode } from 'react'
 import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
+import Navigation from 'components/Common/Navigation'
 import { Helmet } from 'react-helmet'
 
 type TemplateProps = {
@@ -48,7 +49,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
                 <meta name="twitter:site" content="@사용자이름" />
                 <meta name="twitter:creator" content="@사용자이름" />
             </Helmet>
-
+            <Navigation />
             <GlobalStyle />
             {children}
             <Footer />
