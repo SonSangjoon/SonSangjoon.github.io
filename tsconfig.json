@@ -18,6 +18,9 @@
       ],
       "hooks/*": [
         "./hooks/*"
+      ],
+      "assets/*": [
+        "./assets/*"
       ]
     },
     "esModuleInterop": true,
@@ -26,7 +29,8 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "src/**/*.gif"
   ],
   "exclude": [
     "node_modules"
