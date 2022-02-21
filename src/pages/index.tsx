@@ -88,9 +88,8 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       url={siteUrl}
       image={publicURL}
     >
-      <Introduction profileImage={gatsbyImageData} />
+      {/* <Introduction profileImage={gatsbyImageData} /> */}
       <Emoji />
-
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}

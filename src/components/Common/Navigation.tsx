@@ -1,33 +1,79 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 
+import { Link } from 'gatsby'
+
+const Navigation: FunctionComponent = function () {
+  return (
+    <NavWrapper>
+      <Nav>
+        <NavLink to="/">
+          <LogoBox>
+            onshore
+          </LogoBox>
+        </NavLink>
+        <NavBox>
+          <NavLink to="/">
+            projects
+          </NavLink>
+          <NavLink to="/">
+            techblog
+          </NavLink>
+          <NavLink to="https://github.com/SonSangjoon" target="_blank">
+            github
+          </NavLink>
+        </NavBox>
+      </Nav>
+    </NavWrapper>
+  )
+}
+
+export default Navigation
+
+
+
 const NavWrapper = styled.header`
   display: flex;
-  height: 50px;
-  width: 100%;
   position: fixed;
-  padding: 50px 0;
-  font-size: 15px;
+  width: 100%;
+  height: 52px;
+
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  z-index: 10000;
+`
+
+const Nav = styled.div`
+  display: flex;
+  position: fixed;
+  height: 52px;
+
+  justify-content: space-between;
+  align-items: center;
+  min-width: 768px;
+
   text-align: center;
   line-height: 1.5;
-
-  justify-contents: auto;
   @media (max-width: 768px) {
+    width: 100%
     font-size: 13px;
   }
 `
 
-const NavButton = styled.div`
-    justify-content: center;
+const NavBox = styled.div`
+display: flex;
+gap: 10px;
 `
 
-const Navigation: FunctionComponent = function () {
-    return (
-        <NavWrapper>
-            <NavButton>
-            </NavButton>
-        </NavWrapper>
-    )
-}
+const NavLink = styled(Link)`
+display: flex;
+font-size: 12px;
+alig-items: center;
+margin-left: 2rem;
+`
 
-export default Navigation
+const LogoBox = styled.div`
+font-size: 21px;
+font-weight: bold;
+`
