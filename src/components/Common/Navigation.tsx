@@ -57,7 +57,7 @@ const Nav = styled.div`
   line-height: 1.5;
   @media (max-width: 768px) {
     width: 100%
-    font-size: 13px;
+    font-size: 2px;
   }
 `
 
