@@ -46,18 +46,18 @@ const NavWrapper = styled.header`
 
 const Nav = styled.div`
   display: flex;
-  position: fixed;
-  height: 52px;
-
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  min-width: 768px;
-
+  
+  width: 768px;
+  margin: 0 auto;
   text-align: center;
   line-height: 1.5;
+  
   @media (max-width: 768px) {
     width: 100%
-    font-size: 2px;
+    font-size: 12px;
   }
 `
 
