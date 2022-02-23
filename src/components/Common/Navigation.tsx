@@ -9,15 +9,15 @@ const Navigation: FunctionComponent = function () {
       <Nav>
         <NavLink to="/">
           <LogoBox>
-            onshore
+            onshore.
           </LogoBox>
         </NavLink>
         <NavBox>
-          <NavLink to="/">
-            projects
+          <NavLink to="/blog">
+            blog
           </NavLink>
           <NavLink to="/">
-            techblog
+            projects
           </NavLink>
           <NavLink to="https://github.com/SonSangjoon" target="_blank">
             github
@@ -40,7 +40,8 @@ const NavWrapper = styled.header`
 
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgba(29,29,31,0.72);
+  backdrop-filter: saturate(180%) blur(20px);
   z-index: 10000;
 `
 
@@ -54,7 +55,7 @@ const Nav = styled.div`
   margin: 0 auto;
   text-align: center;
   line-height: 1.5;
-  
+
   @media (max-width: 768px) {
     width: 100%
     font-size: 12px;
@@ -71,9 +72,11 @@ display: flex;
 font-size: 12px;
 alig-items: center;
 margin-left: 2rem;
+color: white;
 `
 
 const LogoBox = styled.div`
 font-size: 21px;
 font-weight: bold;
+color: white;
 `

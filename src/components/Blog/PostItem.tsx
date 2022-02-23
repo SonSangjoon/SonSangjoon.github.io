@@ -14,9 +14,6 @@ const PostItemWrapper = styled.div`
   flex-wrap: wrap;
 `
 
-const Overlay = styled.div`
-
-`
 
 const ThumbnailImage = styled(GatsbyImage)`
   width: 170px;
@@ -25,6 +22,14 @@ const ThumbnailImage = styled(GatsbyImage)`
   margin-right : 20px;
   object-fit: cover;
   object-position: center center;
+`
+
+
+const ThumbnailOverlay = styled.a`
+  width: 170px;
+  height: 170px;
+  border-radius: 10px 10px 10px 10px;
+  margin-right : 20px;
 `
 
 const PostItemContent = styled.div`
@@ -110,7 +115,7 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   return (
     <PostItemWrapper >
       <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
-      <Overlay />
+      {/* <ThumbnailOverlay className='overlay' /> */}
       <PostItemContent>
         <Category>
           {categories.map(item => (

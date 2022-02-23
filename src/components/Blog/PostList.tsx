@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import PostItem from 'components/Main/PostItem'
+import PostItem from 'components/Blog/PostItem'
 import { PostListItemType } from 'types/PostItem.types'
 
 import useInfiniteScroll, {
@@ -35,7 +35,6 @@ const PostListWrapper = styled.div`
     grid-gap: 20px;
     width: 768px;
     margin: 0 auto;
-    padding: 50px 0 100px;
   
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
