@@ -5,21 +5,21 @@ import { Link } from 'gatsby'
 
 
 export type CategoryListProps = {
-    selectedCategory: string
-    categoryList: {
-        [key: string]: number
-    }
+  selectedCategory: string
+  categoryList: {
+    [key: string]: number
+  }
 }
 
 
 type CategoryItemProps = {
-    active: boolean;
+  active: boolean;
 }
 
 type GatsbyLinkProps = {
-    children: ReactNode;
-    className?: string;
-    to: string;
+  children: ReactNode;
+  className?: string;
+  to: string;
 } & CategoryItemProps
 
 
@@ -35,59 +35,78 @@ const CategoryListWrapper = styled.div`
   }
 `
 
-const CategoryTitle = styled.div`
-    font-size: 24px;
-    font-weight: 800;
-    margin-top: 100px;
-    border-bottom: 20px;
-`
+const CategoryText = styled.span`
+  padding: 6px 14px 4px 14px;
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 300ms ease-out;
+`;
+
 
 const CategoryBox = styled.div`
-    margin: 30px;
+  margin: 15px;
 `
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
-    <Link {...props} />
+  <Link {...props} />
 )) <CategoryItemProps>`
-    margin-right: 20px;
-    padding: 5px 0;
-    font-size: 18px;
-    font-weight: ${({ active }) => (active ? '800' : '400')};
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+    border-radius: 10px;
+
+    font-weight: 700;
+    color: ${({ active }) => (active ? '#FFFFFF' : '#868E96')};
+    background: ${({ active }) => (active ? '#ADB5BD' : '#DEE2E6')};
   
     &:last-of-type {
         margin-right: 0;
       }
-    
-      @media (max-width: 768px) {
-        font-size: 15px;
-      }
+
 `
 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
-    selectedCategory,
-    categoryList,
+  selectedCategory,
+  categoryList,
 }) {
-    return (
-        <CategoryListWrapper>
-            <CategoryTitle>
-                Blog
-            </CategoryTitle>
-            <CategoryBox>
-                {Object.entries(categoryList).map(([name, count]) => (
-                    <CategoryItem
-                        to={`/blog/?category=${name}`}
-                        active={name === selectedCategory}
-                        key={name}
-                    >
-                        #{name}({count})
-                    </CategoryItem>
-                ))}
-            </CategoryBox>
+  return (
+    <CategoryListWrapper>
+      <Header>
+        <Title>
+          Blog
+        </Title>
+      </Header>
+      <CategoryBox>
+        {Object.entries(categoryList).map(([name, count]) => (
+          <CategoryItem
+            to={`/blog/?category=${name}`}
+            active={name === selectedCategory}
+            key={name}
+          >
+            <CategoryText>
+              {name} {count}
+            </CategoryText>
+          </CategoryItem>
+        ))}
+      </CategoryBox>
 
-        </CategoryListWrapper>
-    )
+    </CategoryListWrapper>
+  )
 }
 
 export default CategoryList
+
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+const Title = styled.div`
+  line-height: 50px;
+  width: 160px;    
+  font-size: 30px;
+
+  border-bottom: solid;
+`

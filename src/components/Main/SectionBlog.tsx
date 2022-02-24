@@ -1,83 +1,78 @@
 import React, { FunctionComponent } from 'react'
+import styled from '@emotion/styled'
+
 import PostList from 'components/Blog/PostList'
-
+import Icon from 'components/Common/Icon'
 import { PostListItemType } from 'types/PostItem.types'
-import { graphql } from 'gatsby'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 
+import { Link } from 'gatsby'
 
 
 type SectionBlogProps = {
-  data: {
-    allMarkdownRemark: {
-      edges: PostListItemType[]
-    }
-    file: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData
-      }
-      publicURL: string
-    }
-  }
+  edges: PostListItemType[]
 }
 
 
-const SectionBlog: FunctionComponent<SectionBlogProps> = function ({
-  data: {
-    allMarkdownRemark: { edges },
-    file: {
-      childImageSharp: { gatsbyImageData },
-      publicURL,
-    },
-  },
-}) {
+const SectionBlog: FunctionComponent<SectionBlogProps> = function ({ edges }) {
+
   const selectedCategory: string = 'All'
 
-
   return (
-    <PostList selectedCategory={selectedCategory} posts={edges} />
+    <Layout>
+      <Header>
+        <Title>
+          Blog
+        </Title>
+        <Button to="/blog">
+          <Icon icon="arrowRight" />
+        </Button>
+      </Header>
+      <PostList selectedCategory={selectedCategory} posts={edges} />
+    </Layout>
   )
 }
 
 export default SectionBlog
 
-export const getPostList = graphql`
-  query getPostList {
-    site {
-      siteMetadata {
-        title
-        description
-        siteUrl
-      }
-    }
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            summary
-            date(formatString: "YYYY.MM.DD.")
-            categories
-            thumbnail {
-              childImageSharp {
-                gatsbyImageData(width: 768, height: 400)
-              }
-            }
-          }
-        }
-      }
-    }
-    file(name: { eq: "profile-image" }) {
-      childImageSharp {
-        gatsbyImageData(width: 120, height: 120)
-      }
-      publicURL
-    }
+const Layout = styled.div`
+  width: 768px;
+  margin: 100px auto;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%
+    font-size: 12px;
   }
-`;
+`
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 50px;
+`
+const Title = styled.div`
+  line-height: 50px;
+  width: 160px;    
+  font-size: 30px;
+
+  border-bottom: solid;
+`
+
+const Button = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(222, 226, 230);
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px;
+  cursor: pointer;
+
+  :hover {
+    background-color: white;
+  }
+`

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import SectionTop from 'components/Main/SectionTop'
-import SectionBlog from 'components/Main/SectionBlog'
+import CategoryList, { CategoryListProps } from 'components/Blog/CategoryList'
+import PostList, { PostType } from 'components/Blog/PostList'
 import Template from 'components/Common/Template'
 
 
@@ -8,8 +8,15 @@ import { PostListItemType } from 'types/PostItem.types'
 import { graphql } from 'gatsby'
 
 import { IGatsbyImageData } from 'gatsby-plugin-image'
+import queryString, { ParsedQuery } from 'query-string'
+import styled from '@emotion/styled'
 
-type IndexPageProps = {
+
+
+type BlogPageProps = {
+  location: {
+    search: string
+  }
   data: {
     site: {
       siteMetadata: {
@@ -31,7 +38,8 @@ type IndexPageProps = {
 }
 
 
-const IndexPage: FunctionComponent<IndexPageProps> = function ({
+const BlogPage: FunctionComponent<BlogPageProps> = function ({
+  location: { search },
   data: {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -43,7 +51,36 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     },
   },
 }) {
+  const parsed: ParsedQuery<string> = queryString.parse(search)
+  const selectedCategory: string =
+    typeof parsed.category !== 'string' || !parsed.category
+      ? 'All'
+      : parsed.category
 
+  const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (
+          list: CategoryListProps['categoryList'],
+          {
+            node: {
+              frontmatter: { categories },
+            },
+          }: PostType,
+        ) => {
+          categories.forEach(category => {
+            if (list[category] === undefined) list[category] = 1;
+            else list[category]++;
+          });
+
+          list['All']++;
+
+          return list;
+        },
+        { All: 0 },
+      ),
+    [],
+  )
   return (
     <Template
       title={title}
@@ -51,16 +88,22 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       url={siteUrl}
       image={publicURL}
     >
-      <SectionTop />
-      <SectionBlog edges={edges} />
+      <Container>
+        <CategoryList
+          selectedCategory={selectedCategory}
+          categoryList={categoryList}
+        />
+        <PostList selectedCategory={selectedCategory} posts={edges} />
+      </Container>
+
     </Template>
   )
 }
 
-export default IndexPage
+export default BlogPage
 
-export const getPostList = graphql`
-  query getPostList {
+export const getBlogList = graphql`
+  query getBlogList {
     site {
       siteMetadata {
         title
@@ -99,3 +142,15 @@ export const getPostList = graphql`
     }
   }
 `;
+
+
+const Container = styled.div`
+  width: 768px;
+  margin: 100px auto;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%
+    font-size: 12px;
+  }
+`

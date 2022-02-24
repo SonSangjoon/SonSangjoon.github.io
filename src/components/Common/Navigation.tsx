@@ -16,7 +16,7 @@ const Navigation: FunctionComponent = function () {
           <NavLink to="/blog">
             blog
           </NavLink>
-          <NavLink to="/">
+          <NavLink to="https://github.com/SonSangjoon" target="_blank">
             projects
           </NavLink>
           <NavLink to="https://github.com/SonSangjoon" target="_blank">
@@ -57,26 +57,30 @@ const Nav = styled.div`
   line-height: 1.5;
 
   @media (max-width: 768px) {
-    width: 100%
+    width: 100%;
     font-size: 12px;
   }
 `
 
 const NavBox = styled.div`
-display: flex;
-gap: 10px;
+  display: flex;
+  gap: 10px;
 `
 
 const NavLink = styled(Link)`
-display: flex;
-font-size: 12px;
-alig-items: center;
-margin-left: 2rem;
-color: white;
+  display: flex;
+  font-size: 12px;
+  alig-items: center;
+  margin-left: 2rem;
+  color: white;
+  :hover {
+    color: #4A5056;
+  }
+  transition: all 150ms ease-out;
 `
 
 const LogoBox = styled.div`
-font-size: 21px;
-font-weight: bold;
-color: white;
+  font-size: 21px;
+  font-weight: bold;
+  color: white;
 `

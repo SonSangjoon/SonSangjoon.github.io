@@ -12,12 +12,18 @@ const PostItemWrapper = styled.div`
   border-radius: 10px;
   padding: 2px;
   flex-wrap: wrap;
+
+  :hover {
+      a {
+      color: #4A5056;
+    }
+  }
 `
 
 
 const ThumbnailImage = styled(GatsbyImage)`
-  width: 170px;
-  height: 170px;
+  width: 240px;
+  height: 160px;
   border-radius: 10px 10px 10px 10px;
   margin-right : 20px;
   object-fit: cover;
@@ -38,28 +44,55 @@ const PostItemContent = styled.div`
   flex-direction: column;
   max-height: 300px
   width : 50
-  padding: 30px 30px;
   border-radius: 10px;
   flex-wrap: wrap;
-  a {
-    transition: all 150ms ease-out;
+  padding: 4px;
+`
 
-    :hover {
-      color: #FF965B;
-    }
+
+const Category = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px -5px;
+`
+
+const CategoryItem = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  margin: 3px;
+  border-radius: 8px;
+  background: #DEE2E6;
+
+  :hover {
+    color: '#FFFFFF'; 
+    background: '#ADB5BD'; 
   }
 `
 
+const CategoryText = styled.span`
+  padding: 4px 8px;
+  color: gray;
+  font-size: 6px;
+  font-weight: 800;
+  line-height: 12px;
+`;
+
+
+
 const Title = styled.div`
   display: -webkit-box;
+  margin: 10px 0px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  font-size: 20px;
-  font-weight: 700;
+
 `
 const Date = styled.div`
   font-size: 14px;
@@ -72,21 +105,9 @@ const PostLink = styled(Link)`
   font-weight: 400;
   opacity: 0.7;
   cursor: pointer;
-`
-
-const Category = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0px -5px;
-`
-
-const CategoryItem = styled.div`
-  margin: 2.5px 5px;
-  padding: 3px 5px;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #FF965B;
+  border-bottom: solid;
+  color: #CED4DA;
+  transition: all 300ms ease-out;
 `
 
 const Summary = styled.div`
@@ -98,7 +119,7 @@ const Summary = styled.div`
   overflow-wrap: break-word;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0.8;
 `
 
@@ -119,15 +140,17 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
       <PostItemContent>
         <Category>
           {categories.map(item => (
-            <CategoryItem key={item}>#{item}</CategoryItem>
+            <CategoryItem to={`/blog/?category=${item}`} key={item}>
+              <CategoryText>
+                {item}
+              </CategoryText>
+            </CategoryItem>
           ))}
         </Category>
-        <>
-          <Title>{title}</Title>
-          <Date>{date}</Date>
-          <Summary>{summary}</Summary>
-          <PostLink to={link}>Read More </PostLink>
-        </>
+        <Title>{title}</Title>
+        {/* <Date>{date}</Date> */}
+        <Summary>{summary}</Summary>
+        <PostLink to={link}>Read More</PostLink>
       </PostItemContent>
     </PostItemWrapper>
   )

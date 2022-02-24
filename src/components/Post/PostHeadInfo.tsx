@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
+import Icon from '../Common/Icon'
 
 export type PostHeadInfoProps = {
   title: string
@@ -24,22 +24,22 @@ const PostHeadInfoWrapper = styled.div`
   }
 `
 
-const PrevPageIcon = styled.div`
-  display: grid;
-  place-items: center;
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 40px;
   height: 40px;
+  border: 1px solid rgb(222, 226, 230);
   border-radius: 50%;
-  background: #ffffff;
-  color: #000000;
-  font-size: 22px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: black;
 
-  @media (max-width: 768px) {
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
+  :hover {
+    background-color: white;
   }
 `
 
@@ -86,9 +86,9 @@ const PostHeadInfo: FunctionComponent<PostHeadInfoProps> = function ({
 
   return (
     <PostHeadInfoWrapper>
-      <PrevPageIcon onClick={goBackPage}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </PrevPageIcon>
+      <Button onClick={goBackPage}>
+        <Icon icon="arrowLeft" />
+      </Button>
       <Title>{title}</Title>
       <PostData>
         <div>{categories.join(' / ')}</div>

@@ -30,7 +30,9 @@
   },
   "include": [
     "src/**/*.tsx",
-    "src/**/*.gif"
+    "src/**/*.gif",
+    ,
+    "src/assets/icons.ts"    "src/assets/icons.ts"
   ],
   "exclude": [
     "node_modules"
