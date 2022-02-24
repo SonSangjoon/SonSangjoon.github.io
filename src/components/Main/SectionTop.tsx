@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import emoji from './../../assets/emoji.gif'
+import emoji from 'assets/emoji.gif'
+
+import Typical from 'react-typical'
 
 const Layout = styled.div`
   display: flex;
@@ -13,7 +15,6 @@ const Layout = styled.div`
 
   background: linear-gradient(135deg, #000111 0%, #000000 100%);
 `
-
 
 const EditorBlocks = styled.div`
   width: 720px;
@@ -62,9 +63,6 @@ const CodeBox = styled.div`
         color: #C5C8D4;
         margin: 0;
     }
-    header {
-
-    }
 `
 
 const CodeHtml = styled(CodeBox)`
@@ -89,6 +87,24 @@ const H1 = styled.h1`
     margin: 0;
 `
 
+const CodeText = styled.div`
+  padding: 0px 24px;
+  color: white;
+  font-weight: 500;
+  line-height: 20px;
+`
+
+const TypicalText = styled(Typical)`
+  display: inline;
+`
+
+const CssText = styled.p`
+  color: white;
+  font-weight: 500;
+  line-height: 20px;
+  opacity: 0.5;
+`
+
 
 const SectionTop: FunctionComponent = function () {
   return (
@@ -100,6 +116,14 @@ const SectionTop: FunctionComponent = function () {
             <h1>HTML</h1>
             <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="#4C4F5A" /></svg>
           </HeaderBox>
+          <CodeText>
+            I am
+            <TypicalText
+              steps={[1000, ' a Frontend Developer!', 500]}
+              loop={Infinity}
+              wrapper="p"
+            />
+          </CodeText>
         </CodeHtml>
         <CodeCss>
           <HeaderBox>
@@ -107,7 +131,16 @@ const SectionTop: FunctionComponent = function () {
             <H1>CSS</H1>
             <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="#4C4F5A" /></svg>
           </HeaderBox>
-
+          <CodeText>
+            <CssText>
+              What I do care about is,
+            </CssText>
+            <TypicalText
+              steps={['User Experience', 1000, 'Work as a Team', 1000, 'Clean Code and Architecture', 1000, 'Reasonable Product', 1000,]}
+              loop={Infinity}
+              wrapper="p"
+            />
+          </CodeText>
         </CodeCss>
         <CodeJs >
           <HeaderBox>
@@ -115,6 +148,13 @@ const SectionTop: FunctionComponent = function () {
             <H1>JS</H1>
             <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.7089 7.65105L14.8704 2.02908C15.1112 1.80937 15.2528 1.51212 15.2528 1.18902C15.2528 0.865913 15.1112 0.56866 14.8704 0.348951C14.6296 0.129241 14.3038 0 13.9497 0C13.5956 0 13.2698 0.129241 13.029 0.348951L7.75989 5.1567L2.49077 0.348951C2.24998 0.129241 1.9242 0 1.57009 0C1.21598 0 0.890202 0.129241 0.649409 0.336026C0.380287 0.568659 0.252808 0.878837 0.252808 1.18902C0.252808 1.48627 0.380286 1.78352 0.621079 2.02908C2.23581 3.51535 6.42844 7.3538 6.71173 7.6252L6.74006 7.65105C7.24998 8.11632 8.19898 8.11632 8.7089 7.65105Z" fill="#4C4F5A" /></svg>
           </HeaderBox>
+          <CodeText>
+            <TypicalText
+              steps={['I am interseted in', 1000, 'I am interseted in React', 1000, 'I am interseted in Recoil', 1000, 'I am interseted in React-Query', 1000]}
+              loop={Infinity}
+              wrapper="p"
+            />
+          </CodeText>
         </CodeJs>
         <Emoji>
           <ImgWrapper src={emoji} alt="Otter dancing with a fish" />

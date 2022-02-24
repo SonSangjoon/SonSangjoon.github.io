@@ -31,8 +31,8 @@
   "include": [
     "src/**/*.tsx",
     "src/**/*.gif",
-    ,
-    "src/assets/icons.ts"    "src/assets/icons.ts"
+    "src/**/*.png",
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules"
