@@ -29,7 +29,7 @@ const SectionBlog: FunctionComponent<SectionBlogProps> = function ({ edges, cate
           <Icon icon="arrowRight" />
         </Button>
       </Header>
-      <PostList selectedCategory={selectedCategory} posts={edges} limit={3} />
+      <PostList selectedCategory={selectedCategory} posts={edges} limit={5} />
     </Layout>
   )
 }
