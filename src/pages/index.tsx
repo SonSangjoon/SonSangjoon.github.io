@@ -52,7 +52,9 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       image={publicURL}
     >
       <SectionTop />
-      <SectionBlog edges={edges} />
+      <SectionBlog edges={edges} category="프로젝트" title="Projects" />
+      <SectionBlog edges={edges} category="TIL" title="TIL" />
+      <SectionBlog edges={edges} category="알고리즘" title="Algorithm" />
     </Template>
   )
 }

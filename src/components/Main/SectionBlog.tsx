@@ -10,24 +10,26 @@ import { Link } from 'gatsby'
 
 type SectionBlogProps = {
   edges: PostListItemType[]
+  category: string
+  title: string
 }
 
 
-const SectionBlog: FunctionComponent<SectionBlogProps> = function ({ edges }) {
+const SectionBlog: FunctionComponent<SectionBlogProps> = function ({ edges, category, title }) {
 
-  const selectedCategory: string = 'All'
+  const selectedCategory: string = category
 
   return (
     <Layout>
       <Header>
         <Title>
-          Blog
+          {title}
         </Title>
-        <Button to="/blog">
+        <Button to={`/blog/?category=${category}`}>
           <Icon icon="arrowRight" />
         </Button>
       </Header>
-      <PostList selectedCategory={selectedCategory} posts={edges} />
+      <PostList selectedCategory={selectedCategory} posts={edges} limit={3} />
     </Layout>
   )
 }

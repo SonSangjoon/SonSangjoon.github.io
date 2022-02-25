@@ -11,6 +11,7 @@ import useInfiniteScroll, {
 type PostListProps = {
     selectedCategory: string
     posts: PostListItemType[]
+    limit: number
 }
 
 
@@ -45,6 +46,7 @@ const PostListWrapper = styled.div`
 const PostList: FunctionComponent<PostListProps> = function ({
     selectedCategory,
     posts,
+    limit
 }) {
     const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
         selectedCategory,
@@ -63,7 +65,7 @@ const PostList: FunctionComponent<PostListProps> = function ({
                 }: PostListItemType) => (
                     <PostItem {...frontmatter} link={slug} key={id} />
                 ),
-            )}
+            ).slice(0, limit)}
         </PostListWrapper>
     )
 }
