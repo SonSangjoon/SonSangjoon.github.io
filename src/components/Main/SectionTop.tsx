@@ -10,7 +10,7 @@ const Layout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  overflow: hidden;
   width: 100%;
   height: 100vh;
   min-height: 700px;
@@ -161,8 +161,6 @@ const SectionTop: FunctionComponent = function () {
           <ImgWrapper src={emoji} alt="Otter dancing with a fish" />
         </Emoji>
       </EditorBlocks >
-
-      <></>
       <Icon icon="arrowDown" />
     </Layout >
   )
