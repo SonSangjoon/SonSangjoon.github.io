@@ -1,16 +1,15 @@
 import React, { FunctionComponent, useMemo } from 'react'
-import CategoryList, { CategoryListProps } from 'components/Blog/CategoryList'
-import PostList, { PostType } from 'components/Blog/PostList'
-import Template from 'components/Common/Template'
-
-
-import { PostListItemType } from 'types/PostItem.types'
 import { graphql } from 'gatsby'
 
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import queryString, { ParsedQuery } from 'query-string'
 import styled from '@emotion/styled'
 
+import { PostListItemType } from 'types/PostItem.types'
+
+import CategoryList, { CategoryListProps } from 'components/Blog/CategoryList'
+import PostList, { PostType } from 'components/Blog/PostList'
+import Template from 'components/Common/Template'
 
 
 type BlogPageProps = {

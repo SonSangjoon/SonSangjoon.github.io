@@ -1,9 +1,7 @@
-
-
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 
-import emoji from './../../assets/emoji.gif'
+import emoji from './assets/emoji.gif'
 
 const ImgWrapper = styled.img`
   height: 300px;

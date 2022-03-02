@@ -5,7 +5,7 @@ import styled from '@emotion/styled'
 import { icons } from "../../assets/icons";
 
 type IconProps = {
-    icon: any
+    icon: PropertyKey
 }
 
 

@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import PostItem from 'components/Blog/PostItem'
+
 import { PostListItemType } from 'types/PostItem.types'
+import PostItem from 'components/Blog/PostItem'
 
 import useInfiniteScroll, {
     useInfiniteScrollType,

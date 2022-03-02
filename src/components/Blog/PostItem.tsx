@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from 'react'
-import styled from '@emotion/styled'
-import { keyframes } from '@emotion/react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
+
+import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
+
 import { PostFrontmatterType } from 'types/PostItem.types'
 
 

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react'
-import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
+import styled from '@emotion/styled'
 
 
 export type CategoryListProps = {
@@ -10,7 +10,6 @@ export type CategoryListProps = {
     [key: string]: number
   }
 }
-
 
 type CategoryItemProps = {
   active: boolean;
@@ -23,29 +22,6 @@ type GatsbyLinkProps = {
 } & CategoryItemProps
 
 
-const CategoryListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 768px;
-  margin: 20px auto;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 0 20px;
-  }
-`
-
-const CategoryText = styled.span`
-  padding: 6px 14px 4px 14px;
-  font-size: 12px;
-  line-height: 14px;
-  transition: all 300ms ease-out;
-`;
-
-
-const CategoryBox = styled.div`
-  margin: 15px;
-`
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
@@ -109,4 +85,27 @@ const Title = styled.div`
   font-size: 30px;
 
   border-bottom: solid;
+`
+
+const CategoryListWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 768px;
+  margin: 20px auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+`
+
+const CategoryText = styled.span`
+  padding: 6px 14px 4px 14px;
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 300ms ease-out;
+`;
+
+const CategoryBox = styled.div`
+  margin: 15px;
 `

@@ -1,9 +1,10 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 import styled from '@emotion/styled'
+import { Helmet } from 'react-helmet'
+
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import Navigation from 'components/Common/Navigation'
-import { Helmet } from 'react-helmet'
 
 type TemplateProps = {
   title: string

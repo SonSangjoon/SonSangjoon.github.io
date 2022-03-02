@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
+import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 
 import PostList from 'components/Blog/PostList'
 import Icon from 'components/Common/Icon'
 import { PostListItemType } from 'types/PostItem.types'
 
-import { Link } from 'gatsby'
 
 
 type SectionBlogProps = {

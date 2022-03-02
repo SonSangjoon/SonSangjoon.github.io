@@ -1,4 +1,4 @@
-export const colors = {
+export const colors: Object = {
   blue50: "#A5C1F7",
   blue150: "#4A83EF",
   blue100: "#4A83EF",

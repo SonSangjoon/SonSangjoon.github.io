@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
-import emoji from 'assets/emoji.gif'
 import Typical from 'react-typical'
 
 import Icon from 'components/Common/Icon'
+import emoji from 'assets/emoji.gif'
 
 
 const Layout = styled.div`

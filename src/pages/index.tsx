@@ -1,13 +1,13 @@
-import React, { FunctionComponent, useMemo } from 'react'
+import React, { FunctionComponent } from 'react'
+
+import { graphql } from 'gatsby'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+
+import { PostListItemType } from 'types/PostItem.types'
+
 import SectionTop from 'components/Main/SectionTop'
 import SectionBlog from 'components/Main/SectionBlog'
 import Template from 'components/Common/Template'
-
-
-import { PostListItemType } from 'types/PostItem.types'
-import { graphql } from 'gatsby'
-
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 type IndexPageProps = {
   data: {
