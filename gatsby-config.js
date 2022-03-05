@@ -18,6 +18,15 @@ module.exports = {
     `gatsby-plugin-image`,
     'gatsby-plugin-sitemap',
     {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'G-305951698', // Google Analytics 
+          // "AW-CONVERSION_ID", // Google Ads
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
         siteUrl: 'https://sonsangjoon.github.io',
@@ -42,13 +51,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/static`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: 'https://sonsangjoon.github.io',
-        stripQueryString: true,
       },
     },
     {
