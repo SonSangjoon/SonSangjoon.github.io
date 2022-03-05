@@ -21,7 +21,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: [
-          'G-305951698', // Google Analytics 
+          'G-F2FW9287D4', // Google Analytics 
           // "AW-CONVERSION_ID", // Google Ads
         ],
       },
