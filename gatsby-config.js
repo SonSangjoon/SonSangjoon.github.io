@@ -16,7 +16,8 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
-    'gatsby-plugin-sitemap',
+    // 'gatsby-plugin-sitemap',
+    `gatsby-plugin-advanced-sitemap`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
