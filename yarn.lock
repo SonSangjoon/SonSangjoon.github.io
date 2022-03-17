@@ -5649,10 +5649,10 @@ gatsby-plugin-canonical-urls@^4.4.0:
   dependencies:
     "@babel/runtime" "^7.15.4"
 
-gatsby-plugin-emotion@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-7.4.0.tgz#f0641f03fb9413f31a724c9d04ea539f7e2eaa4f"
-  integrity sha512-08HGVx8ai1ftlcFWJMhS0JCE33kmXg1O+m0mRjFmA0LfsPpkh9j7x0otJ4s01ctMO0ucAm8ajlqOXw7WW9kkHQ==
+gatsby-plugin-emotion@^7.9.0:
+  version "7.9.0"
+  resolved "https://registry.npmjs.org/gatsby-plugin-emotion/-/gatsby-plugin-emotion-7.9.0.tgz#ed031ac43b4ee3ce070bf3ccb58563fb92b75586"
+  integrity sha512-Zg0WzefNjA5iL9BNX5YCdlPOIZoODVSlrZ+AAUHvhx5XkxKcApW0oznkCi9k2HsSyDrv20BiaT82A4PJfHFSkQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@emotion/babel-preset-css-prop" "^11.2.0"
@@ -9740,10 +9740,10 @@ pretty-format@^25.5.0:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-prismjs@^1.25.0:
-  version "1.25.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.25.0.tgz#6f822df1bdad965734b310b315a23315cf999756"
-  integrity sha512-WCjJHl1KEWbnkQom1+SzftbtXMKQoezOCYs5rECqMN+jP+apI7ftoflyqigqzopSO3hMhTEb0mFClA8lkolgEg==
+prismjs@^1.27.0:
+  version "1.27.0"
+  resolved "https://registry.npmjs.org/prismjs/-/prismjs-1.27.0.tgz#bb6ee3138a0b438a3653dd4d6ce0cc6510a45057"
+  integrity sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==
 
 probe-image-size@^6.0.0:
   version "6.0.0"
