@@ -22,7 +22,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: [
-          'G-F2FW9287D4', // Google Analytics 
+          'G-F2FW9287D4', // Google Analytics
           // "AW-CONVERSION_ID", // Google Ads
         ],
       },
@@ -38,6 +38,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         policy: [{ userAgent: '*', allow: '/' }],
+        sitemap: 'https://sonsangjoon.github.io/sitemap.xml',
       },
     },
     {
@@ -61,8 +62,8 @@ module.exports = {
           formats: ['auto', 'webp'],
           quality: 100,
           placeholder: 'blurred',
-        }
-      }
+        },
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-image`,
