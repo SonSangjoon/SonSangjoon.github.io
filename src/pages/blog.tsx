@@ -11,7 +11,6 @@ import CategoryList, { CategoryListProps } from 'components/Blog/CategoryList'
 import PostList, { PostType } from 'components/Blog/PostList'
 import Template from 'components/Common/Template'
 
-
 type BlogPageProps = {
   location: {
     search: string
@@ -35,7 +34,6 @@ type BlogPageProps = {
     }
   }
 }
-
 
 const BlogPage: FunctionComponent<BlogPageProps> = function ({
   location: { search },
@@ -68,13 +66,13 @@ const BlogPage: FunctionComponent<BlogPageProps> = function ({
           }: PostType,
         ) => {
           categories.forEach(category => {
-            if (list[category] === undefined) list[category] = 1;
-            else list[category]++;
-          });
+            if (list[category] === undefined) list[category] = 1
+            else list[category]++
+          })
 
-          list['All']++;
+          list['All']++
 
-          return list;
+          return list
         },
         { All: 0 },
       ),
@@ -94,7 +92,6 @@ const BlogPage: FunctionComponent<BlogPageProps> = function ({
         />
         <PostList selectedCategory={selectedCategory} posts={edges} />
       </Container>
-
     </Template>
   )
 }
@@ -140,8 +137,7 @@ export const getBlogList = graphql`
       publicURL
     }
   }
-`;
-
+`
 
 const Container = styled.div`
   width: 768px;
@@ -149,7 +145,7 @@ const Container = styled.div`
   padding: 20px;
 
   @media (max-width: 768px) {
-    width: 100%
+    width: 100vw;
     font-size: 12px;
   }
 `
