@@ -7,7 +7,6 @@ import { keyframes } from '@emotion/react'
 
 import { PostFrontmatterType } from 'types/PostItem.types'
 
-
 type PostItemProps = PostFrontmatterType & { link: string }
 
 const PostItem: FunctionComponent<PostItemProps> = function ({
@@ -20,30 +19,23 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
   },
   link,
 }) {
-
-  const time = new Date(date);
-  const dataString = time.toDateString().split(" ")
+  const time = new Date(date)
+  const dataString = time.toDateString().split(' ')
 
   return (
-    <PostItemWrapper >
+    <PostItemWrapper>
       <ThumbnailContainer to={link}>
         <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
-        <ThumbnailOverlay >
-          <ThumbnailText>
-            {dataString[2]}
-          </ThumbnailText>
-          <ThumbnailMonth>
-            {dataString[1]}
-          </ThumbnailMonth>
+        <ThumbnailOverlay>
+          <ThumbnailText>{dataString[2]}</ThumbnailText>
+          <ThumbnailMonth>{dataString[1]}</ThumbnailMonth>
         </ThumbnailOverlay>
       </ThumbnailContainer>
       <PostItemContent>
         <Category>
           {categories.map(item => (
             <CategoryItem to={`/blog/?category=${item}`} key={item}>
-              <CategoryText>
-                {item}
-              </CategoryText>
+              <CategoryText>{item}</CategoryText>
             </CategoryItem>
           ))}
         </Category>
@@ -57,25 +49,30 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
 
 export default PostItem
 
-
 const ThumbnailContainer = styled(Link)`
   position: relative;
-  margin-right : 20px;
+  margin-right: 20px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 const ThumbnailImage = styled(GatsbyImage)`
   width: 240px;
   height: 160px;
   border-radius: 10px;
-  margin-right : 20px;
+  margin-right: 20px;
   object-fit: cover;
   object-position: center center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const ThumbnailOverlay = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 
   position: absolute;
   width: 240px;
@@ -89,6 +86,9 @@ const ThumbnailOverlay = styled.div`
   overflow: hidden;
 
   transition: 300ms ease-out;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 const ThumbnailMonth = styled.p`
@@ -127,7 +127,6 @@ const PostItemContent = styled.div`
   padding: 4px;
 `
 
-
 const Category = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -139,11 +138,11 @@ const CategoryItem = styled(Link)`
   align-items: center;
   margin: 3px;
   border-radius: 8px;
-  background: #DEE2E6;
+  background: #dee2e6;
 
   :hover {
-    color: '#FFFFFF'; 
-    background: '#ADB5BD'; 
+    color: '#FFFFFF';
+    background: '#ADB5BD';
   }
 `
 
@@ -153,7 +152,7 @@ const CategoryText = styled.span`
   font-size: 6px;
   font-weight: 800;
   line-height: 12px;
-`;
+`
 
 const Title = styled.div`
   display: -webkit-box;
@@ -168,7 +167,6 @@ const Title = styled.div`
   overflow-wrap: break-word;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-
 `
 
 const PostLink = styled(Link)`
@@ -178,7 +176,7 @@ const PostLink = styled(Link)`
   opacity: 0.7;
   cursor: pointer;
   border-bottom: solid;
-  color: #CED4DA;
+  color: #ced4da;
   transition: all 300ms ease-out;
 `
 
@@ -207,12 +205,10 @@ const PostItemWrapper = styled.div`
 
   :hover {
     ${PostLink} {
-      animation: ${colorTransition} 1s ease infinite; 
+      animation: ${colorTransition} 1s ease infinite;
     }
     ${ThumbnailOverlay} {
       height: 100%;
     }
   }
 `
-
-

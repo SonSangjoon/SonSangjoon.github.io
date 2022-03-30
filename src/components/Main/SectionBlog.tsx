@@ -6,29 +6,27 @@ import PostList from 'components/Blog/PostList'
 import Icon from 'components/Common/Icon'
 import { PostListItemType } from 'types/PostItem.types'
 
-
-
 type SectionBlogProps = {
   edges: PostListItemType[]
   category: string
   title: string
 }
 
-
-const SectionBlog: FunctionComponent<SectionBlogProps> = function ({ edges, category, title }) {
-
+const SectionBlog: FunctionComponent<SectionBlogProps> = function ({
+  edges,
+  category,
+  title,
+}) {
   const selectedCategory: string = category
 
   return (
     <Layout>
-      <Header>
-        <Title>
-          {title}
-        </Title>
+      <Top>
+        <Title>{title}</Title>
         <Button to={`/blog/?category=${category}`}>
           <Icon icon="arrowRight" />
         </Button>
-      </Header>
+      </Top>
       <PostList selectedCategory={selectedCategory} posts={edges} limit={5} />
     </Layout>
   )
@@ -42,11 +40,11 @@ const Layout = styled.div`
   padding: 20px;
 
   @media (max-width: 768px) {
-    width: 100%
+    width: 100vw;
     font-size: 12px;
   }
 `
-const Header = styled.div`
+const Top = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,7 +53,7 @@ const Header = styled.div`
 `
 const Title = styled.div`
   line-height: 50px;
-  width: 160px;    
+  width: 160px;
   font-size: 30px;
 
   border-bottom: solid;

@@ -2,16 +2,15 @@ import React, { FunctionComponent } from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 
-
 const NavWrapper = styled.header`
   display: flex;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   height: 52px;
 
   justify-content: center;
   align-items: center;
-  background-color: rgba(29,29,31,0.72);
+  background-color: rgba(29, 29, 31, 0.72);
   backdrop-filter: saturate(180%) blur(20px);
   z-index: 10000;
 `
@@ -21,14 +20,14 @@ const Nav = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  
+
   width: 768px;
-  margin: 0 auto;
+  margin: 12px auto;
   text-align: center;
   line-height: 1.5;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 100vw;
     font-size: 12px;
   }
 `
@@ -36,6 +35,7 @@ const Nav = styled.div`
 const NavBox = styled.div`
   display: flex;
   gap: 10px;
+  margin: 12px;
 `
 
 const NavLink = styled(Link)`
@@ -45,7 +45,7 @@ const NavLink = styled(Link)`
   margin-left: 2rem;
   color: white;
   :hover {
-    color: #4A5056;
+    color: #4a5056;
   }
   transition: all 150ms ease-out;
 `
@@ -61,15 +61,14 @@ const Navigation: FunctionComponent = function () {
     <NavWrapper>
       <Nav>
         <NavLink to="/">
-          <LogoBox>
-            onshore.
-          </LogoBox>
+          <LogoBox>onshore.</LogoBox>
         </NavLink>
         <NavBox>
-          <NavLink to="/blog">
-            blog
-          </NavLink>
-          <NavLink to="https://peppermint-need-c5c.notion.site/Portfolio-4d52917684f04a7bae90479630a2fb73" target="_blank">
+          <NavLink to="/blog">blog</NavLink>
+          <NavLink
+            to="https://peppermint-need-c5c.notion.site/Portfolio-4d52917684f04a7bae90479630a2fb73"
+            target="_blank"
+          >
             portfolio
           </NavLink>
           <NavLink to="https://github.com/SonSangjoon" target="_blank">
@@ -82,4 +81,3 @@ const Navigation: FunctionComponent = function () {
 }
 
 export default Navigation
-
