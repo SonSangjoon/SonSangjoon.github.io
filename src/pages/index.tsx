@@ -1,19 +1,14 @@
-import React, { FunctionComponent, useMemo } from 'react'
-import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
-import Introduction from 'components/Main/Introduction'
-import PostList, { PostType } from 'components/Main/PostList'
-import Template from 'components/Common/Template'
+import React, { FunctionComponent } from 'react'
+
+import { graphql } from 'gatsby'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { PostListItemType } from 'types/PostItem.types'
-import { graphql } from 'gatsby'
 
-import { IGatsbyImageData } from 'gatsby-plugin-image'
-import queryString, { ParsedQuery } from 'query-string'
+import SectionBlog from 'components/Main/SectionBlog'
+import Template from 'components/Common/Template'
 
 type IndexPageProps = {
-  location: {
-    search: string
-  }
   data: {
     site: {
       siteMetadata: {
@@ -34,9 +29,7 @@ type IndexPageProps = {
   }
 }
 
-
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
-  location: { search },
   data: {
     site: {
       siteMetadata: { title, description, siteUrl },
@@ -48,36 +41,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     },
   },
 }) {
-  const parsed: ParsedQuery<string> = queryString.parse(search)
-  const selectedCategory: string =
-    typeof parsed.category !== 'string' || !parsed.category
-      ? 'All'
-      : parsed.category
-
-  const categoryList = useMemo(
-    () =>
-      edges.reduce(
-        (
-          list: CategoryListProps['categoryList'],
-          {
-            node: {
-              frontmatter: { categories },
-            },
-          }: PostType,
-        ) => {
-          categories.forEach(category => {
-            if (list[category] === undefined) list[category] = 1;
-            else list[category]++;
-          });
-
-          list['All']++;
-
-          return list;
-        },
-        { All: 0 },
-      ),
-    [],
-  )
   return (
     <Template
       title={title}
@@ -85,12 +48,9 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       url={siteUrl}
       image={publicURL}
     >
-      <Introduction profileImage={gatsbyImageData} />
-      <CategoryList
-        selectedCategory={selectedCategory}
-        categoryList={categoryList}
-      />
-      <PostList selectedCategory={selectedCategory} posts={edges} />
+      <SectionBlog edges={edges} category="프로젝트" title="프로젝트" />
+      <SectionBlog edges={edges} category="TIL" title="TIL" />
+      <SectionBlog edges={edges} category="알고리즘" title="Algorithm" />
     </Template>
   )
 }
@@ -136,4 +96,4 @@ export const getPostList = graphql`
       publicURL
     }
   }
-`;
+`

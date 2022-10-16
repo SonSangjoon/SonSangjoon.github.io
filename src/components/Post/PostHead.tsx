@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+
 import PostHeadInfo, { PostHeadInfoProps } from 'components/Post/PostHeadInfo'
 
 type PostHeadProps = PostHeadInfoProps & {

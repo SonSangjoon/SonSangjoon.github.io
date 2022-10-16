@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es5",
     "module": "commonjs",
     // "allowJs": true,
     "jsx": "preserve",
@@ -18,6 +18,9 @@
       ],
       "hooks/*": [
         "./hooks/*"
+      ],
+      "assets/*": [
+        "./assets/*"
       ]
     },
     "esModuleInterop": true,
@@ -26,7 +29,10 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "src/**/*.gif",
+    "src/**/*.png",
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules"

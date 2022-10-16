@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `주니어 프론트엔드 개발자의 개발 블로그`,
+    title: `onshore 개발 블로그`,
     description: `주니어 프론트엔드 개발자의 프로젝트 기록과 공부한 개발 지식을 정리한 블로그입니다`,
-    author: `Sangjoon`,
+    author: `onshore(Son Sangjoon)`,
     siteUrl: `https://sonsangjoon.github.io`,
   },
   plugins: [
@@ -16,7 +16,17 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
-    'gatsby-plugin-sitemap',
+    // 'gatsby-plugin-sitemap',
+    `gatsby-plugin-advanced-sitemap`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'G-F2FW9287D4', // Google Analytics
+          // "AW-CONVERSION_ID", // Google Ads
+        ],
+      },
+    },
     {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
@@ -28,6 +38,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         policy: [{ userAgent: '*', allow: '/' }],
+        sitemap: 'https://sonsangjoon.github.io/sitemap.xml',
       },
     },
     {
@@ -45,21 +56,14 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-canonical-urls',
-      options: {
-        siteUrl: '<https://my-website.com/>',
-        stripQueryString: true,
-      },
-    },
-    {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
           formats: ['auto', 'webp'],
           quality: 100,
           placeholder: 'blurred',
-        }
-      }
+        },
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-image`,
