@@ -1,0 +1,219 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.24.4"/><meta data-react-helmet="true" name="description" content="ssafé 서비스를 개발하면서 생각하고 도입한 내용을 정리한 글입니다."/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="[프로젝트 회고]ssafé #4 React Query를 활용한 비동기 API 구현"/><meta data-react-helmet="true" property="og:description" content="ssafé 서비스를 개발하면서 생각하고 도입한 내용을 정리한 글입니다."/><meta data-react-helmet="true" property="og:image" content="/static/5b966b032eb9105217f6346f59d30bd5/thumbnail.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="[프로젝트 회고]ssafé #4 React Query를 활용한 비동기 API 구현"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="[프로젝트 회고]ssafé #4 React Query를 활용한 비동기 API 구현"/><meta data-react-helmet="true" name="twitter:description" content="ssafé 서비스를 개발하면서 생각하고 도입한 내용을 정리한 글입니다."/><meta data-react-helmet="true" name="twitter:image" content="/static/5b966b032eb9105217f6346f59d30bd5/thumbnail.png"/><meta data-react-helmet="true" name="twitter:site" content="@onshore"/><meta data-react-helmet="true" name="twitter:creator" content="@onshore"/><meta data-react-helmet="true" name="google-site-verification" content="l_X8ULwc4eWGYMjn3ZB55i23MJF9Gg9FjVe57qbYfxk"/><style data-href="/styles.0109ae7f897db2fecdd6.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#ccc;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}</style><title data-react-helmet="true">[프로젝트 회고]ssafé #4 React Query를 활용한 비동기 API 구현</title><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){if(void 0===e.target.dataset.mainImage)return;if(void 0===e.target.dataset.gatsbyImageSsr)return;const t=e.target;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><link rel="canonical" href="https://sonsangjoon.github.io/220226/220226/" data-baseprotocol="https:" data-basehost="sonsangjoon.github.io"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1uilex40"><style data-emotion="css 1vn8l36">.css-1vn8l36{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:fixed;width:100vw;height:52px;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:rgba(0, 0, 0, 0);-webkit-backdrop-filter:saturate(180%) blur(10px);backdrop-filter:saturate(180%) blur(10px);z-index:1000;}</style><header class="css-1vn8l36 e12n6hdc4"><style data-emotion="css y3na0w">.css-y3na0w{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:768px;margin:12px auto;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-y3na0w{width:100vw;font-size:12px;}}</style><div class="css-y3na0w e12n6hdc3"><style data-emotion="css sub5od">.css-sub5od{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;font-size:12px;-webkit-alig-items:center;-ms-flex-item-alig-items:center;alig-items:center;margin-left:20px;color:#333d48;-webkit-transition:all 150ms ease-out;transition:all 150ms ease-out;}.css-sub5od:hover{color:#b0b8c1;}</style><a class="css-sub5od e12n6hdc1" href="/"><style data-emotion="css 91h5px">.css-91h5px{font-size:21px;font-weight:bold;color:#3182f6;}</style><div class="css-91h5px e12n6hdc0">onshore.</div></a><style data-emotion="css 11peu4j">.css-11peu4j{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;gap:10px;margin:20px;}</style><div class="css-11peu4j e12n6hdc2"><a class="css-sub5od e12n6hdc1" href="/blog">blog</a><a href="https://peppermint-need-c5c.notion.site/Portfolio-4d52917684f04a7bae90479630a2fb73" target="_blank" class="css-sub5od e12n6hdc1">portfolio</a><a href="https://github.com/SonSangjoon" target="_blank" class="css-sub5od e12n6hdc1">github</a></div></div></header><style data-emotion="css-global 1rj6kj3">@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);*{padding:0;margin:0;box-sizing:border-box;font-family:'Spoqa Han Sans Neo','sans-serif';}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1qc3us31"><style data-emotion="css dkwb1y">.css-dkwb1y{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-dkwb1y e1qc3us30"><div style="max-width:1920px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;1080&#x27; width=&#x27;1920&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAhklEQVQoz2P4T2XAQBcD//37B6chbHQ+Qg1BAxEK//3/CzXg79+/cEzIUJwuxOEADJcS5cK/UMVbzvz8v//St//nz574v3f/wf/LV6z6v3fffryGMuCz/ej1X//vPf/1/97dW/8vXrry//LlK//v3LlLmoGYYUmaHF4XYosUECbLhYMmYQMAKLplmO7aZ+kAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/5b966b032eb9105217f6346f59d30bd5/0df1a/thumbnail.webp 480w,/static/5b966b032eb9105217f6346f59d30bd5/eeb31/thumbnail.webp 960w,/static/5b966b032eb9105217f6346f59d30bd5/702da/thumbnail.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1920px) 1920px, 100vw" decoding="async" loading="lazy" data-src="/static/5b966b032eb9105217f6346f59d30bd5/e018d/thumbnail.png" data-srcset="/static/5b966b032eb9105217f6346f59d30bd5/c6b60/thumbnail.png 480w,/static/5b966b032eb9105217f6346f59d30bd5/f5e84/thumbnail.png 960w,/static/5b966b032eb9105217f6346f59d30bd5/e018d/thumbnail.png 1920w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/5b966b032eb9105217f6346f59d30bd5/0df1a/thumbnail.webp 480w,/static/5b966b032eb9105217f6346f59d30bd5/eeb31/thumbnail.webp 960w,/static/5b966b032eb9105217f6346f59d30bd5/702da/thumbnail.webp 1920w" sizes="(min-width: 1920px) 1920px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1920px) 1920px, 100vw" decoding="async" loading="lazy" src="/static/5b966b032eb9105217f6346f59d30bd5/e018d/thumbnail.png" srcSet="/static/5b966b032eb9105217f6346f59d30bd5/c6b60/thumbnail.png 480w,/static/5b966b032eb9105217f6346f59d30bd5/f5e84/thumbnail.png 960w,/static/5b966b032eb9105217f6346f59d30bd5/e018d/thumbnail.png 1920w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e9cj2hr3"><style data-emotion="css 67iklr">.css-67iklr{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:40px;height:40px;border:1px solid rgb(222, 226, 230);border-radius:50%;background-color:rgb(255, 255, 255);box-shadow:rgb(0 0 0 / 10%) 0px 1px 3px;cursor:pointer;color:black;}.css-67iklr:hover{background-color:white;}</style><div class="css-67iklr e9cj2hr2"><style data-emotion="css r5uk6g">.css-r5uk6g{vertical-align:middle;shape-rendering:inherit;-webkit-transform:translate3d(0, 0, 0);-moz-transform:translate3d(0, 0, 0);-ms-transform:translate3d(0, 0, 0);transform:translate3d(0, 0, 0);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}</style><svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="css-r5uk6g esf3axk0"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></div><style data-emotion="css 8arot">.css-8arot{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;line-height:1.2;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-8arot{font-size:30px;}}</style><div class="css-8arot e9cj2hr1">[프로젝트 회고]ssafé #4 React Query를 활용한 비동기 API 구현</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e9cj2hr0"><div>프로젝트 / 프론트엔드 / React Query / Suspense / 싸페</div><div>2022.02.26.</div></div></div></div><style data-emotion="css 1wsltzd">.css-1wsltzd{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-1wsltzd p{padding:3px 0;}.css-1wsltzd h1,.css-1wsltzd h2,.css-1wsltzd h3,.css-1wsltzd h4{font-weight:800;margin-bottom:30px;line-height:1.5;}.css-1wsltzd *+h1,.css-1wsltzd *+h2,.css-1wsltzd *+h3{margin-top:20px;}.css-1wsltzd hr+h1,.css-1wsltzd hr+h2,.css-1wsltzd hr+h3{margin-top:0;}.css-1wsltzd h1{font-size:30px;}.css-1wsltzd h2{font-size:25px;}.css-1wsltzd h3{font-size:20px;}.css-1wsltzd img{width:768px;}.css-1wsltzd blockquote{margin:20px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-1wsltzd ol,.css-1wsltzd ul{margin-left:40px;padding:10px 0;}.css-1wsltzd hr{border:1px solid #000000;margin:20px 0;}.css-1wsltzd a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-1wsltzd pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-1wsltzd pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-1wsltzd code[class*='language-'],.css-1wsltzd pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-1wsltzd{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-1wsltzd h1{font-size:23px;}.css-1wsltzd h2{font-size:20px;}.css-1wsltzd h3{font-size:17px;}.css-1wsltzd img{width:100%;}.css-1wsltzd hr{margin:50px 0;}}</style><div class="css-1wsltzd eohsgcy0"><h1>[프로젝트 회고] #4 React Query를 활용한 비동기 API 구현</h1>
+<p>React Query는 React 앱에서 비동기 로직을 쉽게 다루도록 해주는 라이브러리입니다. 현재 대부분의 웹 어플리케이션은 비동기 로직을 사용한다고 볼 수 있습니다. 이는 유저에게 제공되는 데이터의 양과 질을 높일 수 있는 가장 기본적인 방식이기 때문입니다.</p>
+<p>React Query는 가비지 컬랙션, 개발자 도구 등 다양한 편의 기능을 제공하고 있습니다. React Query에 대한 기본적이 내용은 저의 <a href="https://sonsangjoon.github.io/220306/220306/" target="_blank" rel="nofollow">블로그 글</a>에 정리해두었습니다. 아래의 내용은 프로젝트에 React Query를 사용하여 구현한 내용과 추가적인 보완사항들을 정리해봤습니다.</p>
+<ul>
+<li>Suspense와 React Query를 통한 비동기 API</li>
+<li>Infinite Queries를 활용한 무한 스크롤링 구현</li>
+<li>추가적인 보완사항</li>
+</ul>
+<br/>
+<h1>1. Suspense와 React Query를 통한 비동기 API</h1>
+<h3>React Query와 Suspense</h3>
+<p>React Query는 React Suspense를 지원합니다.
+Suspense를 사용하기 위해 전역을 설정하거나 각 쿼리별로 react suspense의 사용여부를 설정할 수 있습니다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">//전역으로 설정</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> QueryClient<span class="token punctuation">,</span> QueryClientProvider <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-query'</span>
+
+<span class="token keyword">const</span> queryClient <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QueryClient</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">defaultOptions</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">queries</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">suspense</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">Root</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>QueryClientProvider client<span class="token operator">=</span><span class="token punctuation">{</span>queryClient<span class="token punctuation">}</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>QueryClientProvider<span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//개별 쿼리에 대해서 설정</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useQuery <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-query'</span>
+
+<span class="token function">useQuery</span><span class="token punctuation">(</span>queryKey<span class="token punctuation">,</span> queryFn<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">suspense</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<br/>
+<h3>구현 방식</h3>
+<p>이처럼 react query를 사용하여 쉽게 비동기 api에 대해 suspense를 사용할 수 있게 되었습니다. 커뮤니티 게시글 목록에 suspense를 활용한 예시를 보여드리겠습니다.</p>
+<p><img src="https://i.imgur.com/sGOJ8IU.gif" alt="Suspense"></p>
+<p>저의 경우, 커뮤니티 게시글 목록을 비동기적으로 불러오기 때문에 Fallback으로 FeedGrid에 props로 로딩상태를 전달했습니다. 또한, 비동기 로직에서 에러가 발생했을 경우, ErrorBoundary를 따로 만들어 감싸줄 수 있습니다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Suspense <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">CommunityPage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token punctuation">.</span>
+  <span class="token punctuation">.</span>
+  <span class="token punctuation">.</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>ErrorBoundary fallback<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>div <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>CommunityIntro theme<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">}</span> handleButtonClick<span class="token operator">=</span><span class="token punctuation">{</span>handleCreation<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>MainBox<span class="token operator">></span>
+        <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+        <span class="token operator">&lt;</span>Suspense fallback<span class="token operator">=</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>FeedGrid isLoading theme<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">}</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>CommunityFeedGrid theme<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Suspense<span class="token operator">></span>
+        <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>MainBox<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>ErrorBoundary<span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> CommunityPage</code></pre></div>
+<br/>
+<h1>2. Infinite Queries를 활용한 무한 스크롤링 구현</h1>
+<h3>Infinite Queries</h3>
+<p>무한 쿼리는 기존 데이터 집합에 추가로 “더 많은” 데이터를 로드하거나 무한 스크롤할 수 있는 렌더링 목록도 매우 일반적인 UI 패턴입니다. React Query는 Infinite Queries를 통해 더욱 효율적으로 useQuery를 사용할 수 있도록 합니다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">,</span> <span class="token comment">// infinite query data를 담고 있는 객체입니다.</span>
+  error<span class="token punctuation">,</span>
+  fetchNextPage<span class="token punctuation">,</span> <span class="token comment">// 데이터를 추가적으로 호출할 수 있도록 하는 함수입니다.</span>
+  hasNextPage<span class="token punctuation">,</span> <span class="token comment">//더 호출할 데이터가 있는지 boolean 형태로 반환합니다. getNextPageParam가 undefined가 아닌 이상 true를 반환합니다.</span>
+  isFetching<span class="token punctuation">,</span>
+  isFetchingNextPage<span class="token punctuation">,</span>
+  status<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useInfiniteQuery</span><span class="token punctuation">(</span><span class="token string">'projects'</span><span class="token punctuation">,</span> fetchProjects<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">getNextPageParam</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">lastPage<span class="token punctuation">,</span> pages</span><span class="token punctuation">)</span> <span class="token operator">=></span> lastPage<span class="token punctuation">.</span>nextCursor<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<br/>
+<h3>구현 방식</h3>
+<p>커뮤니티, 채용, 스터디 목록 모두 Infinite Queries를 사용하여 구현했습니다. 아래 예시는 커뮤니티 게시글 목록을 무한 스크롤로 구현한 내용입니다.</p>
+<p><img src="https://i.imgur.com/4ZxRqHa.gif" alt="무한스크롤 구현"></p>
+<p>검색 쿼리에 대한 정보와 page에 대한 정보를 params에 담아서 보냅니다.
+다만 nextPage에 대한 정보를 다시 반환했습니다.</p>
+<p>다른 예시들을 참고했을 때, 서버에서 다음 페이지에 대한 정보를 함께 보내주는 경우도 있었습니다.
+동시에 마지막 페이지일 경우에는 false를 전달해주기 위함이었습니다.</p>
+<p>저의 경우에는, 서버쪽에서 보내주지 않아 제가 직접 다음페이지에 대한 정보를 생성해주었습니다.
+또한, 마지막 페이지인지 확인하는 과정도 프론트에서 진행했습니다. 관련 내용은 바로 하단에 정리했습니다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// getCommunityList.js</span>
+<span class="token keyword">const</span> <span class="token function-variable function">fetchPage</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> pageParam</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> param <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>data<span class="token punctuation">,</span>
+    <span class="token literal-property property">offset</span><span class="token operator">:</span> pageParam<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">axiosInstance</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/boards/search/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token literal-property property">params</span><span class="token operator">:</span> param<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> <span class="token literal-property property">res</span><span class="token operator">:</span> res<span class="token punctuation">.</span>data<span class="token punctuation">,</span> <span class="token literal-property property">nextPage</span><span class="token operator">:</span> pageParam <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<br/>
+<p>getNextPageParam을 통해 다음 페이지에 대한 pageParam을 생성할 수 있습니다.
+제가 설정한 nextPage는 prevPage.nextPage를 통해서 가져올 수 있습니다.
+다만 마지막 페이지에 대한 정보는 prevPage.res.length를 통해 확인해 주었습니다.</p>
+<p>이때, 추가적으로 호출할 데이터가 없는 경우에는, undefined를 반환해야지 getNextPageParam이 false로 반환되니 확인이 필요합니다.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// getCommunityList.js</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">GetCommunityList</span> <span class="token operator">=</span> <span class="token parameter">data</span> <span class="token operator">=></span>
+  <span class="token function">useInfiniteQuery</span><span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token string">'getCommunityList'</span><span class="token punctuation">,</span> data<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> pageParam <span class="token operator">=</span> <span class="token number">1</span> <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">fetchPage</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> pageParam<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token function-variable function">getNextPageParam</span><span class="token operator">:</span> <span class="token parameter">prevPage</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">!</span><span class="token operator">!</span>prevPage<span class="token punctuation">.</span>res<span class="token punctuation">.</span>length <span class="token operator">?</span> prevPage<span class="token punctuation">.</span>nextPage <span class="token operator">:</span> <span class="token keyword">undefined</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span></code></pre></div>
+<br/>
+<p>이제 커뮤니티 게시글을 페이지 단위로 정보를 불러오기 위한 기초 쿼리는 완성이 되었습니다.
+무한 스크롤의 경우, 기본적으로 2가지 방식을 통해 구현해볼 수 있습니다.</p>
+<ul>
+<li>scroll event listener: 스크롤에 대한 조건을 만족했을 경우, 추가 데이터를 가져오는 방식</li>
+<li>Intersection Observer API: 타깃으로 삼은 엘리먼트를 관찰해, 특정조건이 되면 데이터를 가져오는 방식</li>
+</ul>
+<p>저의 경우 Intersection Observer을 사용했습니다.
+MDN에 따르면, Intersection Observer API는 타겟 요소와 상위 요소 또는 최상위 document 의 viewport 사이의 intersection 내의 변화를 비동기적으로 관찰하는 API입니다. Event listener를 등록하는 방식과 다르게, dobounce나 throttle을 적용시켜주지 않아도 되며 Reflow가 발생하지 않기 때문에 성능적인 측면에서 사용하지 않을 이유가 없습니다.</p>
+<p>이에 useIntersectionObserver라는 hook을 만들어 필요한 곳에 사용할 수 있도록 했습니다.</p>
+<ul>
+<li>target: useIntersectionObserver의 객체입니다.</li>
+<li>onIntersect: target 엘레멘트와 교차했을 때 호출할 함수를 정의합니다.</li>
+<li>enabled: useIntersectionObserver의 실행 여부를 설정합니다.</li>
+</ul>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// useIntersectionObserver.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">useIntersectionObserver</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> target<span class="token punctuation">,</span> onIntersect<span class="token punctuation">,</span> enabled <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> el <span class="token operator">=</span> target<span class="token operator">?.</span>current
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>enabled <span class="token operator">||</span> <span class="token operator">!</span>el<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">const</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span>
+      <span class="token parameter">entries</span> <span class="token operator">=></span>
+        entries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">entry</span> <span class="token operator">=></span> entry<span class="token punctuation">.</span>isIntersecting <span class="token operator">&amp;&amp;</span> <span class="token function">onIntersect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">1.0</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      observer<span class="token punctuation">.</span><span class="token function">unobserve</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>target<span class="token punctuation">,</span> enabled<span class="token punctuation">,</span> onIntersect<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<br/>
+<p>useIntersectionObserver 게시물의 가장 하단에 추가적인 로드를 위한 컴포넌트를 넣어두었습니다.</p>
+<p>이후 Infinite Queries와 useIntersectionObserver와 연결해주었습니다.</p>
+<ul>
+<li>target: 게시물의 가장 하단의 컴포넌트로 설정했습니다.</li>
+<li>onIntersect: 교차할 경우, fetchNextPage로 추가적인 데이터를 호출하도록 했습니다.</li>
+<li>enabled: hasNextPage을 통해 추가적인 데이터 여부를 판단하여, 없을 경우 추가적인 호출을 제한했습니다.</li>
+</ul>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token function-variable function">CommunityFeedGrid</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">const</span> loader <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> data<span class="token punctuation">,</span> fetchNextPage<span class="token punctuation">,</span> hasNextPage <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">GetCommunityList</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">검색 쿼리에 대한 정보</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> feedData <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">CommunityFeedSelector</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+  <span class="token keyword">const</span> <span class="token function-variable function">onFetchNewData</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">fetchNextPage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">useIntersectionObserver</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">target</span><span class="token operator">:</span> loader<span class="token punctuation">,</span>
+    <span class="token literal-property property">onIntersect</span><span class="token operator">:</span> onFetchNewData<span class="token punctuation">,</span>
+    <span class="token literal-property property">enabled</span><span class="token operator">:</span> hasNextPage<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token punctuation">{</span><span class="token operator">!</span>feedData<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">&lt;</span>CommunityNoContent theme<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">}</span>
+      <span class="token operator">&lt;</span>FeedGrid data<span class="token operator">=</span><span class="token punctuation">{</span>feedData<span class="token punctuation">}</span> theme<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>FetchBox ref<span class="token operator">=</span><span class="token punctuation">{</span>loader<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> CommunityFeedGrid</code></pre></div>
+<br/>
+<h1>3. 추가적인 보완 사항</h1>
+<h3>Optimistic Updates</h3>
+<p>Optimistic Updates이란 Mutation이 발생할 경우 미리 화면의 UI를 바꿔준 후, 서버와의 통신 결과에 따라 확정 / 롤백을 결정하는 방식이다. 말그대로 낙관적으로 바뀔 것이라고 예상하고 UI를 먼저 바꿔주는 것을 의미한다.</p>
+<p>저의 경우도, 의도치 않게 좋아요 기능을 Optimistic Updates 기반으로 구현했다고 볼 수 있습니다. 좋아요를 누를 경우 UI를 변경하고, api를 다시 호출하여 데이터의 상태를 확인하는 과정을 거쳤습니다. 그러나 이렇게 되면 불필요한 api 호출이 발생합니다.</p>
+<p>이에 React Query는 onMutate, onSettled, onError를 통해 다양한 조건을 핸들링 할 수 있도록 했습니다. 관련 내용을 아직 정확히 알지 못하여 적용하지 못했지만, 추가적으로 고민하고 구현 해볼 내용으로 기록에 남겨두기 위해 작성했습니다.</p>
+<h3>Cache, Stale</h3>
+<p><img src="https://i.imgur.com/2bQnzXL.gif" alt="stale"></p>
+<p>아직 React Query의 Cache를 제대로 사용해보지는 못했습니다. 자주 바꾸지 않는 콘텐츠를 대상으로 캐싱을 처리하면 좋겠지만, 이번 프로젝트에는 사용해보지 못했습니다. 다만, 메인 페이지의 상단 슬라이드의 경우 캐싱을 이용해도 될 것으로 생각됩니다. 다양한 use cases들을 참고하여 공부해 볼 필요가 있는 부분이라고 생각합니다.</p>
+<br/>
+<h1>4. 끝맺음</h1>
+<p>React Query를 사용하게 되면서, 그 동안 어떻게 비동기 api를 처리해왔는지 막막하게 느껴질 정도로 편리했습니다.
+캐싱뿐만 아니라, 반복적이 api 호출을 방지하기도 하며 Mutation이 발생했을 경우 쉽게 수정된 데이터로 업데이트 할 수도 있었습니다.
+아직까진 React query의 100%를 끌어내지 못했다고 생각하며, 추가적으로 공부해볼 필요성을 느끼기도 했습니다.</p>
+<p>참고:</p>
+<ul>
+<li><a href="https://velog.io/@jce1407/React-%EB%AC%B4%ED%95%9C-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-with-Intersection-Observer" target="_blank" rel="nofollow">React 무한 스크롤 구현하기 with Intersection Observer</a></li>
+<li><a href="https://react-query.tanstack.com/" target="_blank" rel="nofollow">React Query</a></li>
+<li><a href="https://ko.reactjs.org/docs/concurrent-mode-suspense.html" target="_blank" rel="nofollow">React Suspense</a></li>
+</ul></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc ei01o540"></div><style data-emotion="css 9w9jmx">.css-9w9jmx{display:grid;place-items:center;margin-top:auto;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;}@media (max-width: 768px){.css-9w9jmx{font-size:13px;}}</style><footer class="css-9w9jmx e18uiaj80">Thank You for Visiting My Blog<br/>© 2022 onshore, Powered By Gatsby.</footer></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F2FW9287D4"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-F2FW9287D4', {"send_page_view":false});
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/220226/220226/";window.___webpackCompilationHash="11ed8bf8e88694f00ced";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-fc483b1bbdaa528b4195.js"],"app":["/app-eaff7ccb335ede7f0d1c.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-6eb45a3508afd9181a5c.js"],"component---src-pages-blog-tsx":["/component---src-pages-blog-tsx-120d85ab194dd996572a.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-3b709ef84c170ce062fc.js"],"component---src-pages-info-tsx":["/component---src-pages-info-tsx-9de2baf59b1d79299ace.js"],"component---src-pages-resume-tsx":["/component---src-pages-resume-tsx-5d280f20e5aac3d1884d.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-0373894eee88149e4419.js"]};/*]]>*/</script><script src="/polyfill-fc483b1bbdaa528b4195.js" nomodule=""></script><script src="/app-eaff7ccb335ede7f0d1c.js" async=""></script><script src="/framework-6dc8d1d4ccd1080b4b21.js" async=""></script><script src="/webpack-runtime-54774d440ef92af6c3e4.js" async=""></script></body></html>
