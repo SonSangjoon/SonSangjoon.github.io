@@ -14,22 +14,20 @@ const MarkdownRenderer = styled.div`
   word-break: break-all;
 
   // Markdown Style
-  line-height: 1.8;
+  line-height: 2.5;
   font-size: 16px;
   font-weight: 400;
 
-  // Apply Padding Attribute to All Elements
   p {
-    padding: 3px 0;
+    padding-bottom: 40px;
   }
 
-  // Adjust Heading Element Style
   h1,
   h2,
   h3,
   h4 {
-    font-weight: 800;
-    margin-bottom: 30px;
+    font-weight: 700;
+    margin-bottom: 20px;
     line-height: 1.5;
   }
 
@@ -46,11 +44,11 @@ const MarkdownRenderer = styled.div`
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 24px;
   }
 
   h3 {
@@ -113,7 +111,7 @@ const MarkdownRenderer = styled.div`
     font-size: 14px;
 
     h1 {
-      font-size: 23px;
+      font-size: 24px;
     }
 
     h2 {
@@ -121,7 +119,7 @@ const MarkdownRenderer = styled.div`
     }
 
     h3 {
-      font-size: 17px;
+      font-size: 16px;
     }
 
     img {

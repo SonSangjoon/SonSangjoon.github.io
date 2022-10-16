@@ -2,13 +2,11 @@ import React, { FunctionComponent } from 'react'
 import { Global, css } from '@emotion/react'
 
 const defaultStyle = css`
-  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-
   * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-family: 'Pretendard Variable', 'SUIT Variable', 'sans-serif';
   }
 
   html,
