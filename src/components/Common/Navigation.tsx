@@ -10,9 +10,9 @@ const NavWrapper = styled.header`
 
   justify-content: center;
   align-items: center;
-  background-color: rgba(29, 29, 31, 0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: saturate(180%) blur(10px);
+  z-index: 1000;
 `
 
 const Nav = styled.div`
@@ -35,17 +35,17 @@ const Nav = styled.div`
 const NavBox = styled.div`
   display: flex;
   gap: 10px;
-  margin: 12px;
+  margin: 20px;
 `
 
 const NavLink = styled(Link)`
   display: flex;
   font-size: 12px;
   alig-items: center;
-  margin-left: 2rem;
-  color: white;
+  margin-left: 20px;
+  color: #333d48;
   :hover {
-    color: #4a5056;
+    color: #b0b8c1;
   }
   transition: all 150ms ease-out;
 `
@@ -53,7 +53,7 @@ const NavLink = styled(Link)`
 const LogoBox = styled.div`
   font-size: 21px;
   font-weight: bold;
-  color: white;
+  color: #3182f6;
 `
 
 const Navigation: FunctionComponent = function () {

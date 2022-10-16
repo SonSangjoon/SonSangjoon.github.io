@@ -149,7 +149,7 @@ const CategoryItem = styled(Link)`
 const CategoryText = styled.span`
   padding: 4px 8px;
   color: gray;
-  font-size: 6px;
+  font-size: 10px;
   font-weight: 800;
   line-height: 12px;
 `

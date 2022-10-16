@@ -23,7 +23,7 @@ const SectionBlog: FunctionComponent<SectionBlogProps> = function ({
     <Layout>
       <Top>
         <Title>{title}</Title>
-        <Button to={`/blog/?category=${category}`}>
+        <Button to={`/blog?category=${category}`}>
           <Icon icon="arrowRight" />
         </Button>
       </Top>

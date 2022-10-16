@@ -5,7 +5,6 @@ import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import { PostListItemType } from 'types/PostItem.types'
 
-import SectionTop from 'components/Main/SectionTop'
 import SectionBlog from 'components/Main/SectionBlog'
 import Template from 'components/Common/Template'
 
@@ -30,7 +29,6 @@ type IndexPageProps = {
   }
 }
 
-
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   data: {
     site: {
@@ -43,7 +41,6 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     },
   },
 }) {
-
   return (
     <Template
       title={title}
@@ -51,8 +48,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       url={siteUrl}
       image={publicURL}
     >
-      <SectionTop />
-      <SectionBlog edges={edges} category="프로젝트" title="Projects" />
+      <SectionBlog edges={edges} category="프로젝트" title="프로젝트" />
       <SectionBlog edges={edges} category="TIL" title="TIL" />
       <SectionBlog edges={edges} category="알고리즘" title="Algorithm" />
     </Template>
@@ -100,4 +96,4 @@ export const getPostList = graphql`
       publicURL
     }
   }
-`;
+`
