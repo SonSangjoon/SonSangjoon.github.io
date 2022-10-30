@@ -65,12 +65,6 @@ const Navigation: FunctionComponent = function () {
         </NavLink>
         <NavBox>
           <NavLink to="/blog">blog</NavLink>
-          <NavLink
-            to="https://peppermint-need-c5c.notion.site/Portfolio-4d52917684f04a7bae90479630a2fb73"
-            target="_blank"
-          >
-            portfolio
-          </NavLink>
           <NavLink to="https://github.com/SonSangjoon" target="_blank">
             github
           </NavLink>
