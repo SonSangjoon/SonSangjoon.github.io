@@ -11,7 +11,6 @@ import useInfiniteScroll, {
 type PostListProps = {
   selectedCategory: string
   posts: PostListItemType[]
-  limit: number
 }
 
 export type PostType = {
@@ -45,7 +44,6 @@ const PostListWrapper = styled.div`
 const PostList: FunctionComponent<PostListProps> = function ({
   selectedCategory,
   posts,
-  limit,
 }) {
   const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
     selectedCategory,
@@ -54,19 +52,17 @@ const PostList: FunctionComponent<PostListProps> = function ({
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList
-        .map(
-          ({
-            node: {
-              id,
-              fields: { slug },
-              frontmatter,
-            },
-          }: PostListItemType) => (
-            <PostItem {...frontmatter} link={slug} key={id} />
-          ),
-        )
-        .slice(0, limit)}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   )
 }

@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 
 import styled from '@emotion/styled'
 
-
 export type CategoryListProps = {
   selectedCategory: string
   categoryList: {
@@ -12,34 +11,31 @@ export type CategoryListProps = {
 }
 
 type CategoryItemProps = {
-  active: boolean;
+  active: boolean
 }
 
 type GatsbyLinkProps = {
-  children: ReactNode;
-  className?: string;
-  to: string;
+  children: ReactNode
+  className?: string
+  to: string
 } & CategoryItemProps
-
-
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CategoryItem = styled(({ active, ...props }: GatsbyLinkProps) => (
   <Link {...props} />
-)) <CategoryItemProps>`
-    display: inline-flex;
-    align-items: center;
-    margin: 5px;
-    border-radius: 10px;
+))<CategoryItemProps>`
+  display: inline-flex;
+  align-items: center;
+  margin: 5px;
+  border-radius: 10px;
 
-    font-weight: 700;
-    color: ${({ active }) => (active ? '#FFFFFF' : '#868E96')};
-    background: ${({ active }) => (active ? '#ADB5BD' : '#DEE2E6')};
-  
-    &:last-of-type {
-        margin-right: 0;
-      }
+  font-weight: 700;
+  color: ${({ active }) => (active ? '#FFFFFF' : '#868E96')};
+  background: ${({ active }) => (active ? '#ADB5BD' : '#DEE2E6')};
 
+  &:last-of-type {
+    margin-right: 0;
+  }
 `
 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
@@ -49,9 +45,7 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
   return (
     <CategoryListWrapper>
       <Header>
-        <Title>
-          Blog
-        </Title>
+        <Title>Blog</Title>
       </Header>
       <CategoryBox>
         {Object.entries(categoryList).map(([name, count]) => (
@@ -66,13 +60,11 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
           </CategoryItem>
         ))}
       </CategoryBox>
-
     </CategoryListWrapper>
   )
 }
 
 export default CategoryList
-
 
 const Header = styled.div`
   display: flex;
@@ -81,7 +73,7 @@ const Header = styled.div`
 `
 const Title = styled.div`
   line-height: 50px;
-  width: 160px;    
+  width: 160px;
   font-size: 30px;
 
   border-bottom: solid;
@@ -104,7 +96,7 @@ const CategoryText = styled.span`
   font-size: 12px;
   line-height: 14px;
   transition: all 300ms ease-out;
-`;
+`
 
 const CategoryBox = styled.div`
   margin: 15px;
